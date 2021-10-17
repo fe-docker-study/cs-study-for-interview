@@ -16,5 +16,5 @@
  
 #### Convention
 * 문서는 Markdown 양식에 맞춰 작성한다.
-* 각 폴더 아래 /닉네임/개인스터디자료 경로에 자료를 추가한다.
-* 문서 상단에는 작성한 내용의 Index(목록)를 추가한다. (https://stackoverflow.com/questions/11948245/markdown-to-create-pages-and-table-of-contents)
+* 각 폴더 아래 **/닉네임/개인스터디자료 경로**에 자료를 추가한다.
+* 문서 상단에는 작성한 내용의 <u>Index(목록)</u>를 추가한다. (https://stackoverflow.com/questions/11948245/markdown-to-create-pages-and-table-of-contents)
