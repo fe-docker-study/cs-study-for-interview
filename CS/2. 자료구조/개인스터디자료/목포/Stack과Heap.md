@@ -5,7 +5,7 @@
 ### 개념
 
 한 쪽 끝에서만 자료를 넣고 뺄 수 있는 LIFO(Last In First Out)형식의 자료구조  
-![Image]("https://cheonmro.github.io/images/stack.jpg")
+![image](https://user-images.githubusercontent.com/31172248/140636646-04799204-6d36-4e16-8f9a-398c039981f4.png)  
 
 ### Stack의 연산
 
@@ -101,13 +101,15 @@ false
   1. 힙에 새로운 요소가 들어오면, 일단 새로운 노드를 힙의 마지막 노드에 삽입한다.
   2. 새로운 노드를 부모노드들과 교환하여 힙의 성질을 만족시킨다.  
      **예) 최대 힙에 새로운 요소 8 삽입**
-     ![]("https://gmlwjd9405.github.io/images/data-structure-heap/maxheap-insertion.png")
+     ![image](https://user-images.githubusercontent.com/31172248/140636659-b652e665-447b-4d3b-9554-84cd70f0a6e5.png)  
+
 
 - 삭제(최대 힙)
   1. Root 노드를 삭제한다.
   2. Root 노드의 자리에 맨 마지막 노드를 가져온다.
   3. heap을 재구성한다. (만약 자식노드보다 크면 그대로 두고, 작다면 자식노드와 값을 바꾼다.)
-     ![]("https://media.vlpt.us/images/humblechoi/post/412494b4-1e52-42a1-b05c-bb1dcc399372/image.png")
+     ![image](https://user-images.githubusercontent.com/31172248/140636666-c0c05cec-3bb9-4be5-865b-e8ad6c0429a9.png)  
+
 
 ### Priority Queue를 사용하여 Heap 구현하기
 
@@ -143,6 +145,8 @@ public class Main {
 5
 8
 ```
+
+<img width="250" alt="image" src="https://user-images.githubusercontent.com/31172248/140636676-0f4b366d-1adf-4851-8e5b-23f5689b9f80.png">
 
 ```Java
 private void siftUpComparable(int k, E x) {
