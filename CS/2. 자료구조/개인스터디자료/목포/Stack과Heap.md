@@ -111,6 +111,10 @@ false
      ![image](https://user-images.githubusercontent.com/31172248/140636666-c0c05cec-3bb9-4be5-865b-e8ad6c0429a9.png)  
 
 
+
+![image](https://user-images.githubusercontent.com/31172248/140637352-09b119aa-f520-4488-af21-ad606df6bd9e.png)
+
+
 ### Priority Queue를 사용하여 Heap 구현하기
 
 Java에서는 Priority Queue를 이용하여 Heap을 구현할 수 있도록 지원하고 있다.
