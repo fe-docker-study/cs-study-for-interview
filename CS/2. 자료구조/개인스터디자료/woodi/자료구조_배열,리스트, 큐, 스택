@@ -1,0 +1,173 @@
+
+
+## LinkedList와 Array
+
+**Array**
+
+- 논리적 저장 순서와 물리적 저장 순서가 일치
+- 인덱스를 이용해서 특정 원소에 Random Access 가능 (O(N))
+- 제한적인 크기
+
+**LinkedList**
+
+- 논리적 저장 순서 ≠ 물리적 저장순서
+- 각 원소들은 자기 다음에 올 노드의 주소 값을 갖고 있음
+
+**연산 시 시간 복잡도**
+
+1. 접근
+    - Array : O(1)
+    - LinkedList : O(N)
+2. 삽입
+    - Array : 인덱스로 원하는 위치 접근하는데 O(1), 삽입 후 그 뒤 원소들은 뒤로Shift 하는 데 O(N)
+    - LinkedList : 삽입하려는 위치에 접근하기까지 O(N), 삽입 자체는 O(1)
+3. 삭제
+    - 삽입 연산과 동일
+
+1. 메모리 할당
+    - Array : Array가 선언되자마자 Compiletime에 메모리에 할당됨
+    - LinkedList : Runtime에 새로운 노드가 추가될 때마다 메모리에 할당됨
+    
+
+## 큐
+
+- First In First Out (FIFO) 구조의 자료구조
+https://miro.medium.com/max/1400/1*PMYRFmVecFT61P4aAh0g1g.png
+
+**구현**
+
+```java
+//연결 리스트로 사용 할 노드 class
+
+public class Node {
+	private Object data;
+	private Node nextNode;
+	
+	public Node(Object data){
+		this.data = data;
+		this.nextNode = null;
+	}
+
+	//해당 노드를 원하는 노드(Node top)와 연결해주는 메소드
+	public void linkNode(Node top){
+		this.nextNode = top;
+	}
+
+	//해당 노드의 데이터를 가져오는 get메소드
+	public Object getData(){
+		return this.data;
+	}
+	
+	//해당 노드와 연결된 노드를 가져오는 get메소드
+	public Node getNextNode(){
+		return this.nextNode;
+	}
+}
+```
+
+```java
+public class ListQueue {
+	private Node front;
+	private Node rear;
+
+	public ListQueue(){
+		this.front = null;
+		this.rear = null;
+	}
+
+	public boolean isEmpty(){
+		if (front == null) return true;
+		else return false;
+	}
+
+	public void enQueue(Object item){
+		Node newNode = new Node(item);
+	
+		if(isEmpty()){
+			rear = newNode;
+			front = newNode;
+		}else{
+			rear.linkNode(newNode);
+			rear = newNode;
+		}
+	}
+
+	public Object peek(){
+		return front.getData();
+	}
+
+	public Object deQueue(){
+		Object backUpItem = peek();
+		//front를 삭제한 다음 Node로 초기화
+		front = front.getNextNode();
+		//삭제한 노드가 마지막 노드였을 경우 rear도 초기화
+		if(front == null) rear = null;
+		return backUpItem;
+	}
+}
+```
+
+## 스택
+
+https://wayhome25.github.io/assets/post-img/cs/stack.jpg
+
+- 한 쪽 끝에서만 자료를 삽입/삭제할 수 있는 LIFO (Last In First Out)
+
+괄호 짝 맞추기
+```java
+package dataStructure;
+
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Stack;
+
+public class StackValidBracket {
+    static ArrayList<Character> open;
+    static ArrayList<Character> close;
+    public static boolean isPair(char a, char b){
+        if(a=='(' && b==')') return true;
+        if(a=='{' && b=='}') return true;
+        if(a=='[' && b==']') return true;
+        return false;
+    }
+    public static boolean validBracket(String bracket){
+        Stack<Character> stack = new Stack<>();
+
+        for(int i=0; i<bracket.length(); i++){
+            char c = bracket.charAt(i);
+            if(open.contains(c)){
+                stack.push(c);
+            }else if(close.contains(c)){
+                if(isPair(stack.peek(), c)==true){
+                    stack.pop();
+                }else{
+                    return false;
+                }
+            }
+        }
+
+        if(stack.size()==0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static void main(String[] args) {
+        open = new ArrayList<>(Arrays.asList('(','{', '['));
+        close = new ArrayList<>(Arrays.asList(')','}', ']'));
+
+        System.out.println(validBracket("()"));
+        System.out.println(validBracket("((([{}])))"));
+    }
+}
+```
+
+참고
+
+[https://wooono.tistory.com/281](https://wooono.tistory.com/281)
+
+[https://monsieursongsong.tistory.com/11?category=754667](https://monsieursongsong.tistory.com/11?category=754667)
+
+[https://medium.com/@jinseok.choi/스택-stack-48a22e52268b](https://medium.com/@jinseok.choi/%EC%8A%A4%ED%83%9D-stack-48a22e52268b)
