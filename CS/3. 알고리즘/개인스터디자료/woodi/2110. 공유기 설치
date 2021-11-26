@@ -1,0 +1,62 @@
+import java.util.Arrays;
+import java.util.Scanner;
+/**
+ * bruteForce : dfs로 공유기 c개 선택 후, 최소거리가 max인 경우 구하기 
+ * binarySearch : 
+ * 	찾아야 하는 값 : 공유기 간의 최소 거리 len
+ * 	1 <= len <= N
+ * 	s=1, e = N, len = (s+e)/2
+ * 	f(len) : 공유기 사이의 최소 거리가 len일 때, 놓을 수 있는 공유기 개수
+ * 	if(f(len) < c) s= len+1
+ * 	else e = len-1
+ * 	
+ * 	투 포인터 문제 같음 
+ *
+ */
+public class Main {
+	// 길이가 len일 때, 놓을 수 있는 공유기 개수 
+	public static boolean canPutAllRouter(long len, int[] home, int c) {
+		int now = 0;
+		int count = 1;
+		for(int i=1; i<home.length; i++) {
+			if(home[i]-home[now]>=len) {
+				now = i;
+				count ++;
+			}
+		}
+		
+		if(count>=c) return true;
+		return false;
+	
+	}
+	public static long solution(int n, int c, int[] home) {
+		long s=1;
+		long e=home[n-1];
+		long len = 0;
+        long result = 0;
+		while(s<=e) {
+			len = (s+e)/2;
+			if(canPutAllRouter(len, home, c)) {	// 놓을 수 있음 -> len 더 늘려도 됨
+                result = Math.max(result, len);
+				s= len+1;
+			}else {
+				e= len-1;
+			}
+		}
+		return result;
+	}
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int c = sc.nextInt();
+		int[] home = new int[n];
+		for(int i=0; i<n; i++) {
+			home[i] = sc.nextInt();
+		}
+		Arrays.sort(home);
+		long result = solution(n,c,home);
+		System.out.println(result);
+	}
+}
+
