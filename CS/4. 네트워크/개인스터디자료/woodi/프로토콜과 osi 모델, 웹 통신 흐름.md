@@ -155,11 +155,11 @@
 2) DHCP 서비스를 탑재하고 있는 라우터가 broadcast된 DHCP 메시지에 관심을 가짐
     ⇒ DHCP 메시지를 받아서 DHCP ACK 메시지 생성 ⇒ broadcast 함
 3) 학생 노트북은 해당 ACK 메시지가 자신이 보낸 쿼리에 대한 ACK이라는 것을 알고 DHCP ACK 메시지를 받음
-4) 마침내 노트북은 자신의 IP 주소, first hop router의 IP 주소, DNS IP 주소를 알게되낟.
+4) 마침내 노트북은 자신의 IP 주소, first hop router의 IP 주소, DNS IP 주소를 알게된다.
 
 
 
-1. ARP
+2. ARP
     - 주소창에 url 치는 순간, HTTP client 프로세스는 DNS client 프로세스를 구동시킴
     - DNS client는 www.google.com의 IP 주소를 물어보는 쿼리 메시지 작성
     - DNS 서버에 가기 위해서는 우선 gateway router를 거쳐야 함.
@@ -167,19 +167,19 @@
     - ARP 쿼리를 broadcast하여 first hop router의 mac 주소를 알아냄
     - 이후 dns 쿼리를 담고있는 메시지는 first hop router로 보내진다.
 
-1. DNS 사용
+3. DNS 사용
     - IP datagram은 캠퍼스 네트워크에서 인터넷으로 broadcast 됨
     - 이때 라우팅 프로토콜들에 의해 생성된 라우팅 테이블을 통해 라우팅된다.
     - 그렇게 DNS 서버에 도달하면 DNS 서버는 도메인 명에 대한 IP 주소를 담아서 노트북에 reply
     - 이제 노트북은 구글의 IP 주소를 알게 되고, 웹 서버로 HTTP request를 보낼 준비가 됨.
 
-1. TCP connection
+4. TCP connection
     - application layer : http
     - transport layer : TCP : syn, synack, ack(+http msg) ⇒ 3 way handshake
     - Internet layer : (목적지) 웹 서버의 IP 주소
     - network access layer : first hop router의 mac 주소
 
-1. 구글 웹 서버에서 이 frame을 받으면 IP 계층까지 올려보냄 → 자신에게 온 것이 맞으면 HTTP reply 작성해서 client로 전송
+5. 구글 웹 서버에서 이 frame을 받으면 IP 계층까지 올려보냄 → 자신에게 온 것이 맞으면 HTTP reply 작성해서 client로 전송
 
 # 그 외
 
