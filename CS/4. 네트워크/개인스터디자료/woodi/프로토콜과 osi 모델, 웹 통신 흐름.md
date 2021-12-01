@@ -150,7 +150,7 @@
     
 
 
-💡 DHCP 프로세스  
+* DHCP 프로세스  
     1. DHCP 메시지는 로컬 네트워크에 broadcast 됨  
     2. DHCP 서비스를 탑재하고 있는 라우터가 broadcast된 DHCP 메시지에 관심을 가짐  
         ⇒ DHCP 메시지를 받아서 DHCP ACK 메시지 생성 ⇒ broadcast 함  
