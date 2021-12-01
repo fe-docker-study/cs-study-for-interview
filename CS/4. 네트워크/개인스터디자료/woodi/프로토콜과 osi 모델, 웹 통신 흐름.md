@@ -143,7 +143,7 @@
 
 1. 인터넷에 접속하기
     - ip를 할당 받아야 함
-    - gateway router의 ip 주소를 알아야 함
+    - first hop router의 ip 주소를 알아야 함
     - 구글의 도메인 이름은 알지만 ip 주소는 모르기 때문에 이를 알기 위한 dns 서버의 주소를 알아야함
     
     → DHCP 프로토콜을 통해 알아냄
@@ -155,7 +155,7 @@
 2) DHCP 서비스를 탑재하고 있는 라우터가 broadcast된 DHCP 메시지에 관심을 가짐
     ⇒ DHCP 메시지를 받아서 DHCP ACK 메시지 생성 ⇒ broadcast 함
 3) 학생 노트북은 해당 ACK 메시지가 자신이 보낸 쿼리에 대한 ACK이라는 것을 알고 DHCP ACK 메시지를 받음
-4) 마침내 노트북은 자신의 IP 주소, gateway router의 IP 주소, DNS IP 주소를 알게되낟.
+4) 마침내 노트북은 자신의 IP 주소, first hop router의 IP 주소, DNS IP 주소를 알게되낟.
 
 
 
@@ -163,9 +163,9 @@
     - 주소창에 url 치는 순간, HTTP client 프로세스는 DNS client 프로세스를 구동시킴
     - DNS client는 www.google.com의 IP 주소를 물어보는 쿼리 메시지 작성
     - DNS 서버에 가기 위해서는 우선 gateway router를 거쳐야 함.
-    - 하지만 현재 gateway router의 ip만 알고, 물리적 네트워크 주소(MAC 주소)는 모름
-    - ARP 쿼리를 broadcast하여 gateway router의 mac 주소를 알아냄
-    - 이후 dns 쿼리를 담고있는 메시지는 gateway router로 보내진다.
+    - 하지만 현재 first hop router의 ip만 알고, 물리적 네트워크 주소(MAC 주소)는 모름
+    - ARP 쿼리를 broadcast하여 first hop router의 mac 주소를 알아냄
+    - 이후 dns 쿼리를 담고있는 메시지는 first hop router로 보내진다.
 
 1. DNS 사용
     - IP datagram은 캠퍼스 네트워크에서 인터넷으로 broadcast 됨
@@ -177,7 +177,7 @@
     - application layer : http
     - transport layer : TCP : syn, synack, ack(+http msg) ⇒ 3 way handshake
     - Internet layer : (목적지) 웹 서버의 IP 주소
-    - network access layer : (목적지)gateway router의 mac 주소
+    - network access layer : first hop router의 mac 주소
 
 1. 구글 웹 서버에서 이 frame을 받으면 IP 계층까지 올려보냄 → 자신에게 온 것이 맞으면 HTTP reply 작성해서 client로 전송
 
