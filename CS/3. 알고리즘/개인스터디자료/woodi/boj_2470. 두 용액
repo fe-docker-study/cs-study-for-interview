@@ -1,0 +1,48 @@
+```java
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    
+	public static void main(String[] args)throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
+ 
+        int n = Integer.parseInt(br.readLine());
+        int[] arr = new int[n];
+ 
+        st = new StringTokenizer(br.readLine());
+        for(int i=0; i<n; i++){
+            arr[i] = Integer.parseInt(st.nextToken());
+        }
+            
+		Arrays.sort(arr);
+		
+		int s = 0;
+		int e = n-1;
+		int result = 2000000001;
+		int rs = 0;
+		int re = 0;
+		while(s<e) {
+			int val = arr[s]+arr[e];
+			// 두 용액 갱신
+            if(Math.abs(val) < result) {
+                rs = s;
+                re = e;
+                result = Math.abs(val);
+            }
+			if(val==0) {
+				break;
+			}else if(val<0) {
+				s++;
+			}else {
+				e--;
+			}
+		}
+		System.out.println(arr[rs]+" "+arr[re]);
+	}
+}
+
+
+
+```
