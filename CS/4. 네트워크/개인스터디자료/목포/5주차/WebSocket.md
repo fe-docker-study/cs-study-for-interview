@@ -77,3 +77,6 @@ public class WebSocketConfig implements WebSocketConfigurer {
     }
 }
 ```
+
+![image](https://user-images.githubusercontent.com/31172248/147848903-20f80203-69d1-48d3-aeac-13ccacc1ada7.png)
+
