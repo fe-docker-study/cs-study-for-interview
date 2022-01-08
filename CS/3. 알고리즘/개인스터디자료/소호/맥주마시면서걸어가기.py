@@ -5,12 +5,18 @@ def get_distance(loc1, loc2):
     return abs(loc1[0]-loc2[0])+abs(loc1[1]-loc2[1])
 
 
-def bfs():
-    q = deque(spots[0])  # 집부터 시작
+def bfs(s, visited):
+    q = deque([s])
+    visited[s] = True
+    while q:
+        v = q.popleft()
+        for i in graph[v]:
+            if not visited[i]:
+                q.append(i)
+                visited[i] = True
 
 
-t = int(input())
-for _ in range(t):
+for _ in range(int(input())):
     n = int(input()) + 2
     spots = []
     for _ in range(n):
@@ -18,12 +24,15 @@ for _ in range(t):
 
     graph = [[] for _ in range(n)]
 
-    for i in range(n-1):
-        for j in range(i, n):
-            if i == j:
-                continue
-            d = get_distance(spots[i], spots[j])
-            if d > 1000:
-                continue
-            graph[i].append(j)
-            graph[j].append(i)
+    # 인접리스트 만들기
+    for i in range(n):
+        for j in range(n):
+            if i != j and get_distance(spots[i], spots[j]) <= 1000:
+                graph[i].append(j)
+                graph[j].append(i)
+    visited = [False] * n
+    bfs(0, visited)  # 집부터 시작
+    if visited[n-1]:
+        print("happy")
+    else:
+        print("sad")
