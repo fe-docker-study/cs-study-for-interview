@@ -28,7 +28,7 @@
 
 ## OAuth1.0 vs OAuth2.0
 
-![Untitled](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/c6494bd4-a589-4480-a914-c7428bf96fb0/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220101%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220101T150419Z&X-Amz-Expires=86400&X-Amz-Signature=d355853b4b9a999af6b3032ad70846abfe684906e8fce6344f9a9516724a5127&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+![Untitled](https://user-images.githubusercontent.com/90545926/152669477-5af353b0-4cae-4f1f-ae00-10adb2c27723.png)
 
 - 기존 서비스 제공자(Service Provider)를 자원 및 권한 서버로 분리하여 다수의 서비스 제공자(서버)로 구성, 웹 서비스에서 발생 가능한 권한 동기화 문제 개선
 - 오픈 API 요청시, 클라이언트 인증 방법으로 서명 대신, HTTPS를 의무화하여 서버 및 클라이언트 개발 편의성 개선
@@ -64,7 +64,7 @@
 
 ## 권한 승인 개요
 
-![Untitled](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/fe4d2946-5de0-49fe-a2e7-c72715074fe8/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220101%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220101T150436Z&X-Amz-Expires=86400&X-Amz-Signature=ef391a3002ddedebfa782a8ec3225a7d240623cf5a7e73b86dbecc2a6ee8e578&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+![Untitled](https://user-images.githubusercontent.com/90545926/152669493-4c5041db-5743-4ca5-961e-d3aebefaf1ee.png)
 
 ① 클라이언트가 자원 소유자에게 자원에 대한 접근 권한을 직/간접 요청 ( Redirect URI를 통해 자원 소유자를 권한 서버로 리다이렉션 시키며, 권한서버가 클라이언트를 식별할 수 있도록 식별 정보를 함께 전달)
 
@@ -82,7 +82,7 @@
 
 ### 권한 코드 승인 (Authorization Code Grant)
 
-![Untitled](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/db9313c5-f46f-4ac7-b2ba-170e7f30c812/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220101%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220101T150507Z&X-Amz-Expires=86400&X-Amz-Signature=153768300973cc247332fdef6d9a3fae88f2a09a717d7e47737adf09365c2aae&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+![Untitled](https://user-images.githubusercontent.com/90545926/152669478-63718550-8d01-42af-b6df-ee43655a8eca.png)
 
 - 클라이언트 유형
   - 서버 웹 애플리케이션
@@ -96,7 +96,7 @@
 
 ### 암묵적 승인 (Implicit Grant)
 
-![응답 타입이 token 일 경우 암시적 승인 타입에 해당, 권한 코드 교환없이 토큰을 바로 받음](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4f978e08-6fad-42e7-8941-153c2eaffdd9/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220101%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220101T150519Z&X-Amz-Expires=86400&X-Amz-Signature=b5daa298b1b2d6962022a4bd5681a0b07f68990fc1844a24f4772fcfd92b0ff0&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+![응답 타입이 token 일 경우 암시적 승인 타입에 해당, 권한 코드 교환없이 토큰을 바로 받음](https://user-images.githubusercontent.com/90545926/152669479-08d11600-8d31-44f7-b2f2-e25facf7dfbb.png)
 
 응답 타입이 token 일 경우 암시적 승인 타입에 해당, 권한 코드 교환없이 토큰을 바로 받음
 
@@ -110,7 +110,7 @@
 
 ### 자원 소유자 비밀번호 자격증명 승인 (Resource Owner Password Credentials Grant)
 
-![클라이언트가 암호를 사용해 토큰에 대한 사용자 자격 증명을 교환](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/816c488e-7415-49d0-998f-c9a4ef326d4e/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220101%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220101T150539Z&X-Amz-Expires=86400&X-Amz-Signature=3c4c94c4fdb3ae3fb58ce368350f8d2df63770d5bd4162e6f77920afab82996f&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+![클라이언트가 암호를 사용해 토큰에 대한 사용자 자격 증명을 교환](https://user-images.githubusercontent.com/90545926/152669481-d5250f79-5e66-4076-abb1-c414bf8a4651.png)
 
 클라이언트가 암호를 사용해 토큰에 대한 사용자 자격 증명을 교환
 
@@ -125,7 +125,7 @@
 
 ### 클라이언트 자격증명 승인 (Client Credentials Grant)
 
-![클라이언트 자신이 관리하는 리소스, 혹은 권한 서버에 해당 클라이언트를 위해 제한된 리소스 권한이 설정되어 있는 경우 사용, 즉 클라이언트 웹 서버자체가 resource owner인 경우](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/1be90f07-f598-4d63-a91b-b803e563eff2/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220101%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220101T150604Z&X-Amz-Expires=86400&X-Amz-Signature=da5f2de625bb67b4994560cbc999ef5bf484e45ccf5f633aa5fe54a2223ec6e5&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+![클라이언트 자신이 관리하는 리소스, 혹은 권한 서버에 해당 클라이언트를 위해 제한된 리소스 권한이 설정되어 있는 경우 사용, 즉 클라이언트 웹 서버자체가 resource owner인 경우](https://user-images.githubusercontent.com/90545926/152669482-a3bf53ad-2639-45b5-81d6-7890ddd01c33.png)
 
 클라이언트 자신이 관리하는 리소스, 혹은 권한 서버에 해당 클라이언트를 위해 제한된 리소스 권한이 설정되어 있는 경우 사용, 즉 클라이언트 웹 서버자체가 resource owner인 경우
 
@@ -139,7 +139,7 @@
 
 ## 권한 코드 승인
 
-![Untitled](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/c6819654-ff12-43ee-a1aa-a4261ba08a1d/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220101%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220101T150733Z&X-Amz-Expires=86400&X-Amz-Signature=e8dddc78ee2bcfd767f5469779b613650a47c3465d08bd833103362b263673d3&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+![Untitled](https://user-images.githubusercontent.com/90545926/152669483-d196bd7f-0e64-4ad3-b519-a744b2965421.png)
 
 ① 클라이언트가 웹 브라우저에게 리다이렉트 URI를 전달하여 권한 서버의 인증 및 권한 확인 웹 페이지로 리다이렉션 시킴 (권한 서버가 클라이언트를 식별할 수 있도록 client_id를 함께 전달)
 
@@ -155,11 +155,11 @@
 
 ### 페이코 예시
 
-![페이코 OAuth2.0 인증과정](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/168552b7-06a3-410a-8edd-a0438a5a3825/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220101%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220101T150925Z&X-Amz-Expires=86400&X-Amz-Signature=00f736e0efe4c56a1e803f222de835a8bd29bada342da2ccaca20399413adac4&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+![페이코 OAuth2.0 인증과정](https://user-images.githubusercontent.com/90545926/152669484-958627a9-e4a8-4bce-b47d-9a404842072c.png)
 
 페이코 OAuth2.0 인증과정
 
-![페이코 OAuth2.0 프로세스](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/1e679e0c-0c30-4623-90f6-914e760249f8/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220101%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220101T150935Z&X-Amz-Expires=86400&X-Amz-Signature=8dcb3d4aa7c71a01304ca450cb5d8f954588d14ea144d473fad2a3149fba8c99&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+![페이코 OAuth2.0 프로세스](https://user-images.githubusercontent.com/90545926/152669470-f66de50a-b4ee-4a4d-a1db-5b9a1b82acd3.png)
 
 페이코 OAuth2.0 프로세스
 
@@ -188,4 +188,4 @@ state 값은 CSRF token 역할을 하는데, 만약 state 값에 대해 검증�
 
 정상적인 경로라면 사용자(Resource Owner)가 로그인 성공 후 발급받은 Authorization code를 Client로 전달하나 공격자가 클라이언트와 권한 서버간의 권한승인 요청을 가로채서 변조된 Redirect URI를 보내 로그인을 유도. 4번 단계에서 사용자(피해자)가 Redirect URI 값이 변조된 URL로 로그인할 경우, Authorization code 값이 공격자 서버로 전달되어 공격자는 사용자(피해자)의 계정을 탈취
 
-![Untitled](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/00569b78-39fa-45c7-97bd-5a8ac0557a0b/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220101%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220101T151354Z&X-Amz-Expires=86400&X-Amz-Signature=1e309a0c2c82275050f94a67779beec2683e301cc46c8febec87278e8139c01d&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+![Untitled](https://user-images.githubusercontent.com/90545926/152669472-7a8a6ac2-a01e-4e4d-81f5-166c5ddf2520.png)
