@@ -14,7 +14,11 @@ NoSQL은 RDBMS의 형태가 아닌 비관계형 모델을 이용해 데이터를
 6. 데이터베이스의 중단 없는 서비스와 자동 복구 기능지원
 7. 확장성, 가용성, 높은 성능
 
+![image](https://user-images.githubusercontent.com/31172248/153703899-256b9574-1748-483f-83ec-e922fe2dc3fd.png)
+
+
 ### 종류
+![image](https://user-images.githubusercontent.com/31172248/153703829-4812b401-bb30-4d20-95ff-1a853e2659c7.png)
 
 #### Key-Value Database
 
@@ -84,15 +88,22 @@ Key-value Database와 같이 데이터 저장에 Key-Value Type을 사용한다.
 Nodes, Relationship, Key-Value 데이터 모델을 지원하며 RDF와 속성 그래프 같은 두 가지 유형을 꼽을 수 있다.
 
 **RDF**
-자원을 기술하는 형태로 Attributes와 Relationship으로 표현된다. Entity가 가지는 특성이 Attributes로 표현되고 Entity 와 Entity 사이의 관계를 표현하는 것이 Relationship이다.
+자원을 기술하는 형태로 Attributes와 Relationship으로 표현된다. Entity가 가지는 특성이 Attributes로 표현되고 Entity 와 Entity 사이의 관계를 표현하는 것이 Relationship이다.  
+![image](https://user-images.githubusercontent.com/31172248/153703729-289d78ce-c294-484b-97f5-5222e2d8c5da.png)
+
 
 **속성 그래프**
-데이터 간의 관계를 모델링하는데 사용되며 이 관계를 기반으로 데이터 분석 작업이 이루어진다. 속성 그래프에는 주제에 대한 자세한 정보를 포함하는 꼭짓점과 이 꼭짓점 간 관계를 나타내는 엣지를 갖고있다.
+데이터 간의 관계를 모델링하는데 사용되며 이 관계를 기반으로 데이터 분석 작업이 이루어진다. 속성 그래프에는 주제에 대한 자세한 정보를 포함하는 꼭짓점과 이 꼭짓점 간 관계를 나타내는 엣지를 갖고있다.  
+![image](https://user-images.githubusercontent.com/31172248/153703734-ae0e319b-8e19-4000-9bae-61912d7e0fc8.png)
+
 
 - Neo4J
 - OrientDB
 
 ##### 활용사례
 
-1. 소셜 미디어 분석
+1. 소셜 미디어 분석  
+![image](https://user-images.githubusercontent.com/31172248/153703654-9149d86c-4219-40ac-b3ee-f519937ca96f.png)
+![image](https://user-images.githubusercontent.com/31172248/153703667-181a7735-2eb1-43df-8033-49870b49a264.png)
 2. 신용카드 사기 분석
+
