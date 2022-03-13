@@ -7,8 +7,8 @@ def dfs(idx, sum):
     sum += s_[idx]
     if sum == s:
         cnt += 1
-    dfs(idx + 1, sum - s_[idx])
-    dfs(idx + 1, sum)
+    dfs(idx + 1, sum - s_[idx]) #backtracking
+    dfs(idx + 1, sum) #keep going
 n, s = map(int, input().split())
 s_ = list(map(int, input().split()))
 cnt = 0
