@@ -3,6 +3,10 @@ package programmers;
 import java.util.Arrays;
 
 /**
+
+보드 칸이 크지 않으므로 완전 탐색
+
+
  * 칸이 홀수 : 먼저 시작하는 애가 이김
  * 칸이 짝수 : 먼저 시작하는 애가 짐
  * 항상 A가 먼저 시작함
