@@ -12,7 +12,7 @@ import java.util.Arrays;
  * 총 이동 횟수를 구하시오
  * 
  * 
- * 
+ * 참고 : https://tech.kakao.com/2022/01/14/2022-kakao-recruitment-round-1/
  */
 public class Programmers_92345 {
 	static int[] dx = {-1,1, 0, 0};
