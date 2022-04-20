@@ -25,3 +25,10 @@ MSA란 마이크로 서비스 아키텍처(Micro Service Architecture)의 약자
 - 성능 : 서비스 간 호출 시 API를 사용하기 때문에, 통신 비용이나, Latency가 늘어난다.
 - 테스트 / 트랜잭션 : 서비스가 분리되어 있기 때문에 테스트와 트랜잭션의 복잡도가 증가하고, 많은 자원을 필요로 한다.
 - 데이터 관리 : 데이터가 여러 서비스에 걸쳐 분산되기 때문에 한번에 조회하기 어렵고, 데이터의 정합성 또한 관리하기 어렵다.
+
+## Software Architecture
+### Antifragile
++ Auto scaling : 자동 확장성을 갖는 특징
++ Microservices : 전체 서비스를 구축하고 있는 개별적인 모듈을 세분화함
++ Chaos engineering : 시스템이 예측하지 못한 상황이어도 견딜 수 있게 함
++ Continuous deployments : 배포 파이프 라인 (지속적 통합, 지속적 배포)
