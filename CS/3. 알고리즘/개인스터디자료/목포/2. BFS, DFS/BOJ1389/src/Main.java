@@ -1,74 +1,65 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.util.StringTokenizer;
+import java.util.Scanner;
 
-public class Main {
-    static final int INF = 987654321;
+class Main {
+    private static int n; // 유저의 수
+    private static int m; // 친구관계의 수
+    private static int[] answerNum; // 정답 친구 번호
+    private static int[] minDistance; // 친구 최단 경로
+    private static int[][] distance; // 최소비용(최단거리)
+    private static int INF = 5001;
 
-    public static void main(String[] args) throws NumberFormatException, IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        StringTokenizer st = new StringTokenizer(br.readLine());
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        n = sc.nextInt();
+        m = sc.nextInt();
+        distance = new int[n + 1][n + 1];
 
-        int N = Integer.parseInt(st.nextToken());
-        int M = Integer.parseInt(st.nextToken());
-        int[][] arr = new int[N + 1][N + 1];
-
-        // 초기값 설정
-        for (int i = 1; i <= N; i++) {
-            for (int j = 1; j <= N; j++) {
-                arr[i][j] = INF;
-
-                if (i == j) {
-                    arr[i][j] = 0;
-                }
+        //초기화
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (i == j) distance[i][j] = 0;
+                else distance[i][j] = INF;
             }
         }
 
-        // 간선의 방향이 양방향이어야 함.
-        for (int i = 0; i < M; i++) {
-            st = new StringTokenizer(br.readLine());
-            int x = Integer.parseInt(st.nextToken());
-            int y = Integer.parseInt(st.nextToken());
-
-            arr[x][y] = arr[y][x] = 1;
+        for (int i = 0; i < m; i++) {
+            int start = sc.nextInt();
+            int end = sc.nextInt();
+            distance[start][end] = 1;
+            distance[end][start] = 1;
         }
 
-        // 플로이드 와샬 알고리즘
-        for (int k = 1; k <= N; k++) {
-            for (int i = 1; i <= N; i++) {
-                for (int j = 1; j <= N; j++) {
-                    // 최단경로 초기화
-                    if (arr[i][j] > arr[i][k] + arr[k][j]) {
-                        arr[i][j] = arr[i][k] + arr[k][j];
-                    }
-                }
+        //플로이드 워셜 알고리즘
+        floyd();
+        
+        //출력
+        int[] answer = new int[n + 1];
+        int min = Integer.MAX_VALUE;
+        for (int i = 1; i <= n; i++) {
+            int sum = 0;
+            for (int j = 1; j <= n; j++) {
+                sum += distance[i][j];
+            }
+            answer[i] = sum;
+            if (sum < min) {
+                min = sum;
             }
         }
-
-        int res = INF;
-        int idx = -1;
-
-        // 케빈 베이컨의 수가 가장 작은 인덱스를 탐색
-        for (int i = 1; i <= N; i++) {
-            int total = 0;
-            for (int j = 1; j <= N; j++) {
-                total += arr[i][j];
-            }
-
-            if (res > total) {
-                res = total;
-                idx = i;
+        for (int i = 1; i <= n; i++) {
+            if (answer[i] == min) {
+                System.out.println(i);
+                return;
             }
         }
-
-        bw.write(idx + "\n");
-        bw.flush();
-        bw.close();
-        br.close();
     }
 
+    private static void floyd() {
+        for (int k = 1; k <= n; k++) { //거쳐가는 중간 지점 노드
+            for (int i = 1; i <= n; i++) { //시작 노드
+                for (int j = 1; j <= n; j++) { //도착 노드
+                    distance[i][j] = Math.min(distance[i][k] + distance[k][j], distance[i][j]); //최단경로 초기화
+                }
+            }
+        }
+    }
 }
