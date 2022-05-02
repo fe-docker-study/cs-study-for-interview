@@ -6,7 +6,8 @@
     - 등록 기능
     - 검색 기능
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/42b5289e-46bb-44a7-a968-a9298d6d85d5/Untitled.png)
+![image](https://user-images.githubusercontent.com/47748246/166176532-9bfc9285-555b-4eec-87c9-9e17fe6c72a7.png)
+
 
 - Naming Server
 - 여기에 microservice 서버, gateway 서버 등을 등록해 놓고 위치를 검색한다.
