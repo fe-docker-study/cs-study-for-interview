@@ -8,7 +8,7 @@
 
 
 
-![image-20220517111535428](C:\test\a\cs-study-for-interview\MSA\포도\모놀리식과_마이크로서비스_아키텍처_비교.png)
+![image-20220517170651045](https://github.com/fe-docker-study/cs-study-for-interview/blob/main/MSA/%ED%8F%AC%EB%8F%84/%EB%AA%A8%EB%86%80%EB%A6%AC%EC%8B%9D%EA%B3%BC_%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C%EC%84%9C%EB%B9%84%EC%8A%A4_%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98_%EB%B9%84%EA%B5%90.png)
 
 위 그림처럼 각각의 마이크로 서비스는 자체 비즈니스 계층과 데이터베이스를 가지고 있다. 따라서 수정 시에도 다른 마이크로 서비스에 영향을 주지 않는다.
 일반적으로 마이크로 서비스는 HTTP, REST 같은 널리 채택된 lightweight 프로토콜 또는 JMS, AMQP와 캍은 메시징 프로토콜을 사용하여 서로 통신한다.
@@ -22,7 +22,7 @@
 + 마이크로서비스는 몇 가지 기본 원칙에 기반을 두며, 서비스 소비자와 서비스 제공자 사이의 데이터 교환을 위해 HTTP와 JSON 같은 경량 통신 프로토콜을 사용한다.
 + 애플리케이션은 항상 기술 중립적 프로토콜을 사용해 통신하므로 서비스 구현 기술과는 무관하다. 따라서 마이크로서비스 기반의 애플리케이션을 다양한 언어와 기술로 구축할 수 있다.
 
-
+<br>
 
 ### 2. MSA 목적
 
@@ -34,7 +34,7 @@ MSA는 다음과 같은 장점들을 통해 시스템에 대한 개발 및 운�
 + 독립적인 서비스 단위 확장(scale-out)을 지원하기 때문에 효율적으로 시스템 자원을 활용할 수 있다.
 + 개별로 서비스 배포가 가능하기 때문에 수시로 필요에 따라 배포할 수 있다.
 
-
+<br>
 
 ### 3. 12-Factor App 방법론
 
@@ -46,11 +46,11 @@ MSA는 다음과 같은 장점들을 통해 시스템에 대한 개발 및 운�
 + 개발환경과 운영환경의 차이를 최소화하여 민첩성을 극대화하고 지속적인 배포가 가능하다.
 + 툴, 아키텍처, 개발방식을 크게 바꾸지 않고 서비스를 확장(scale-up)할 수 있다.
 
-
+<br>
 
 12-Factor 방법론은 어떤 프로그래밍 언어로 작성된 앱에도 적용할 수 있고, 백엔드 서비스(데이터베이스, 큐, 메모리 캐시 등)와 다양한 조합으로 사용할 수 있다.
 
-
+<br>
 
 12-Factor 방법론
 
@@ -107,13 +107,13 @@ MSA는 다음과 같은 장점들을 통해 시스템에 대한 개발 및 운�
 
     - 관리 작업을 일회성 프로세스로 실행
 
-
+<br>
 
 ### 4. Service Mesh
 
 Service Mesh : 각 마이크로서비스 간통신을 최적화하고 다운 타임을 방지하며 전체 서비스를 관리하기 위한 Outer Architecture로 복잡한 내부 네트워크의 추상화를 통해 서비스 간의 통신이 빠르고, 안정적이며, 신뢰성을 보장한다.
 
-
+<br>
 
 Service Mesh의 주요 기능
 
@@ -129,14 +129,14 @@ Service Mesh의 주요 기능
 - Packaging, Deployment & Scheduling : 패키징, 빌드 및 배포 자동화
 - Test Automation : 서비스 테스트 자동화
 
-
+<br>
 
 Service Mesh 적용 방안
 
 - Kubernetes의 Istio 솔루션 사용
 - Spring Cloud 기반 Service Mesh 구축
 
-
+<br>
 
 Spring Cloud와 Kubernetes의 기술 요소 매핑
 
@@ -156,13 +156,13 @@ Spring Cloud와 Kubernetes의 기술 요소 매핑
 | Job Management                     | Spring Batch                            | Kubernetes Jobs & Scheduled Jobs                   |
 | Singleton Application              | Spring Cloud Cluster                    | Kubernetes Pods                                    |
 
-
+<br>
 
 마이크로서비스 필요조건에 따른 범위
 
-![image-20220517111346189](C:\test\a\cs-study-for-interview\MSA\포도\마이크로서비스_필요조건에_따른_범위.png)
+![image-20220517170651045](https://github.com/fe-docker-study/cs-study-for-interview/blob/main/MSA/%ED%8F%AC%EB%8F%84/%EB%A7%88%EC%9D%B4%ED%81%AC%EB%A1%9C%EC%84%9C%EB%B9%84%EC%8A%A4_%ED%95%84%EC%9A%94%EC%A1%B0%EA%B1%B4%EC%97%90_%EB%94%B0%EB%A5%B8_%EB%B2%94%EC%9C%84.png)
 
-
+<br>
 
 Kubernetes와 결합된 Spring Cloud의 예
 
@@ -185,7 +185,7 @@ Kubernetes와 결합된 Spring Cloud의 예
 | Environment Management       | Namespaces, Authorizations                               |
 | Resource Management          | CPU and memory limits, Namespace resource quotes         |
 
-
+<br>
 
 ## Spring Cloud 기반 마이크로서비스 이해
 
@@ -193,7 +193,7 @@ Kubernetes와 결합된 Spring Cloud의 예
 
 컴포넌트 레벨에서의 마이크로서비스 아키텍처로 설정 간소화 및 독립 서비스를 지원한다.
 
-
+<br>
 
 스프링 부트 애플리케이션 스타터
 
@@ -247,7 +247,7 @@ Kubernetes와 결합된 Spring Cloud의 예
 | spring-boot-starter-webflux                 | Spring Framework 의 Reactive Web 지원을 사용하여 WebFlux 애플리케이션 구축을 위한 스타터 |
 | spring-boot-starter-websocket               | Spring Framework 의 WebSocket 지원을 사용하여 WebSocket 애플리케이션 구축을 위한 스타터 |
 
-
+<br>
 
 스프링 부트 프로덕션 스타터
 
@@ -255,7 +255,7 @@ Kubernetes와 결합된 Spring Cloud의 예
 | ---------------------------- | ------------------------------------------------------------ |
 | spring-boot-starter-actuator | 애플리케이션을 모니터링하고 관리 할 수 있는 프로덕션 준비 기능을 제공하는 Spring Boot Actuator 사용을 위한 스타터 |
 
-
+<br>
 
 스프링 부트 테크니컬 스타터
 
@@ -268,13 +268,13 @@ Kubernetes와 결합된 Spring Cloud의 예
 | spring-boot-starter-tomcat        | 임베디드 서블릿 컨테이너로 Tomcat을 사용하기위한 스타터      |
 | spring-boot-starter-undertow      | Undertow를 임베디드 서블릿 컨테이너로 사용하기위한 스타터 대안 : spring-boot-starter-tomcat |
 
-
+<br>
 
 ### 2. Spring Cloud
 
 시스템 레벨에서의 마이크로 서비스 아키텍처로 컴포넌트들 간의 효율적인 분산 서비스를 지원한다.
 
-
+<br>
 
 Spring Cloud 컴포넌트
 
@@ -292,7 +292,7 @@ Spring Cloud 컴포넌트
 | Ployglot 지원 서비스     | non-JVM 프로그래밍 언어 지원을 위한 서비스                   | Spring Cloud Sidecar               |
 | Kuberenetes 지원 서비스  | Spring Cloud 애플리케이션을 위한 쿠버네티스 Discovery와 ConfigMaps 지원 서비스 | Spring Cloud Kubernetes            |
 
-
+<br>
 
 ## Spring Cloud 기반 마이크로 서비스 활용
 
@@ -300,35 +300,35 @@ Spring Cloud 컴포넌트
 
 상품의 전시 및 화면에 대한 로직을 처리하는 서비스로서 별도의 데이터는 가지고 있지 않지만, 사용자의 입력 및 출력에 대한 서비스를 제공한다. 또한 요청에 따라 각각의 서비스를 호출하여 요청에 응답한다.
 
-
+<br>
 
 Customers 서비스를 호출하기 위해 별도의 RestTemplate을 적용한다.
 
 *※ RestTemplate : 스프링 3.0부터 지원하는 HTTP 통신에 사용되는 템플릿으로 REST 서비스를 호출하도록 설계되어 HTTP 프로토콜의 메서드(GET, POST, DELETE, PUT)에 맞게 여러 메서드를 제공한다.*
 
-
+<br>
 
 Hystrix를 적용하여 Customers 서비스에서 호출한 API가 에러를 발생하거나 1초 이상 지연이 되는 경우 별도의 fallback 메소드를 실행하여 장애의 전파를 방지한다.
 
-
+<br>
 
 Ribbon을 RestTemplate에 적용한다.
 
-
+<br>
 
 Eureka Client로 등록한다.
 
-
+<br>
 
 ### 2. Customers 서비스
 
 고객 정보를 조회할 수 있는 서비스로 요청에 따라 고객 정보를 반환한다. 
 
-
+<br>
 
 Eureka Client로 등록한다.
 
-
+<br>
 
 ### 3. Spring Cloud의 컴포넌트 활용
 
@@ -336,7 +336,7 @@ Eureka Client로 등록한다.
 
 분산환경을 위한 장애 및 지연 내성을 갖도록 도와주는 라이브러리로써 Circuit Breaker Pattern 디자인을 적용하여 MSA 애플리케이션의 장애 전파를 방지할 수 있다. 
 
-
+<br>
 
 Hystirx의 역할
 
@@ -347,17 +347,17 @@ Hystirx의 역할
 3. 병행성
    Parallel execution을 제공하며 여러 설정 값에 대한 변경을 지원한다. 또한 내부적으로 중복되는 Request 처리를 줄이기 위하여 Request Caching과 일관 처리를 위한 Request Collapsing 기능을 제공한다.
 
-
+<br>
 
 spring-cloud-netflix-dependencies의 3버전대부터는 maintenance mode로 관리되어 해당 라이브러리에서 사라졌다.
 
-
+<br>
 
 #### Client Load Balancer - Ribbon
 
 클라이언트에 탑재할 수 있는 소프트웨어 기반의 로드 밸런서이다. MSA에서는 하드웨어적인 L4 Switch가 아니라 소프트웨어적으로 구현된 클라이언트사이드 로드 밸런싱을 주로 사용한다. Ribbon은 분산 처리 방법으로 여러 서버를 라운드 로빈 방식으로 부하 분산 기능을 제공한다.
 
-
+<br>
 
 Ribbon의 구성 요소
 
@@ -371,7 +371,7 @@ Ribbon의 구성 요소
    - Configuration을 통해 static하게 설정 가능
    - Eureka 등을 기반으로 dynamic하게 설정 가능
 
-
+<br>
 
 #### Service Registry - Eureka
 
@@ -379,17 +379,17 @@ Ribbon의 구성 요소
 
 Ribbon과 결합하여 사용할 수 있으며 이를 통해 서버 목록을 자동으로 관리 및 갱신한다.
 
-
+<br>
 
 Eureka는 Eureka 서버와 클라이언트로 구성된다.
 
 + Eureka 서버 : Eureka 클라이언트에 해당하는 마이크로 서비스들의 상태 정보가 등록되어 있는 레지스트리 서버이다.
 + Eureka 클라이언트 : 서비스가 시작될 때 Eureka 서버에 자신의 정보를 등록하고 이후 주기적으로 자신의 가용 상태를 알리며, 일정 횟수 이상의 ping이 확인되지 않으면 Eureka 서버에서 해당 서비스를 제외시킨다.
 
-
+<br>
 
 EurekaServer 프로젝트 생성
 
 Eureka Client를 등록하는 경우 아래와 같이 Eureka Server에서 확인할 수 있다.
 
-![image-20220517170651045](C:\test\a\cs-study-for-interview\MSA\포도\Eureka_Server.png)
+![image-20220517170651045](https://github.com/fe-docker-study/cs-study-for-interview/blob/main/MSA/%ED%8F%AC%EB%8F%84/Eureka_Server.png)
