@@ -296,5 +296,100 @@ Spring Cloud 컴포넌트
 
 ## Spring Cloud 기반 마이크로 서비스 활용
 
+### 1. Catalogs 서비스
+
+상품의 전시 및 화면에 대한 로직을 처리하는 서비스로서 별도의 데이터는 가지고 있지 않지만, 사용자의 입력 및 출력에 대한 서비스를 제공한다. 또한 요청에 따라 각각의 서비스를 호출하여 요청에 응답한다.
 
 
+
+Customers 서비스를 호출하기 위해 별도의 RestTemplate을 적용한다.
+
+*※ RestTemplate : 스프링 3.0부터 지원하는 HTTP 통신에 사용되는 템플릿으로 REST 서비스를 호출하도록 설계되어 HTTP 프로토콜의 메서드(GET, POST, DELETE, PUT)에 맞게 여러 메서드를 제공한다.*
+
+
+
+Hystrix를 적용하여 Customers 서비스에서 호출한 API가 에러를 발생하거나 1초 이상 지연이 되는 경우 별도의 fallback 메소드를 실행하여 장애의 전파를 방지한다.
+
+
+
+Ribbon을 RestTemplate에 적용한다.
+
+
+
+Eureka Client로 등록한다.
+
+
+
+### 2. Customers 서비스
+
+고객 정보를 조회할 수 있는 서비스로 요청에 따라 고객 정보를 반환한다. 
+
+
+
+Eureka Client로 등록한다.
+
+
+
+### 3. Spring Cloud의 컴포넌트 활용
+
+#### Circuit Breaker - Hystrix
+
+분산환경을 위한 장애 및 지연 내성을 갖도록 도와주는 라이브러리로써 Circuit Breaker Pattern 디자인을 적용하여 MSA 애플리케이션의 장애 전파를 방지할 수 있다. 
+
+
+
+Hystirx의 역할
+
+1. 장애 및 지연 내성 
+   분산 환경에서 한 개의 서비스가 실패하는 경우 해당 서비스의 실패로 의존성이 있는 타 서비스까지 장애가 전파될 수 있다. 외부에서 호출하는 서비스를 Hystrix로 Wrapping 하면 실패가 전파되는 것을 Fallbacks를 활용하여 미연에 방지하고 빠르게 복구할 수 있도록 도와준다. 또한 각 서비스의 HystrixCommand는 Circuit Breaker Pattern으로 외부에 영향을 받지 않도록 쓰레드와 세마포어 방식으로 분리되어 있다.
+2. 실시간 구동 모니터링
+   Hystrix를 사용하면 Netflex/Servo를 활용한 metrix 서비스를 사용할 수 있으며 third-party 라이브러리로 Prometheus를 통하여 모니터링을 할 수 있다.
+3. 병행성
+   Parallel execution을 제공하며 여러 설정 값에 대한 변경을 지원한다. 또한 내부적으로 중복되는 Request 처리를 줄이기 위하여 Request Caching과 일관 처리를 위한 Request Collapsing 기능을 제공한다.
+
+
+
+spring-cloud-netflix-dependencies의 3버전대부터는 maintenance mode로 관리되어 해당 라이브러리에서 사라졌다.
+
+
+
+#### Client Load Balancer - Ribbon
+
+클라이언트에 탑재할 수 있는 소프트웨어 기반의 로드 밸런서이다. MSA에서는 하드웨어적인 L4 Switch가 아니라 소프트웨어적으로 구현된 클라이언트사이드 로드 밸런싱을 주로 사용한다. Ribbon은 분산 처리 방법으로 여러 서버를 라운드 로빈 방식으로 부하 분산 기능을 제공한다.
+
+
+
+Ribbon의 구성 요소
+
+1. Rule : 요청을 보낼 서버를 선택하는 논리
+   - Round Robbin : 한 서버씩 돌아가면서 전달 (기본 설정)
+   - Avaiable Filtering : 에러가 많은 서버를 제외함
+   - Weighted Response Time : 서버 별 응답 시간에 따라 확률 조절
+2. Ping : 서버가 살아 있는지 체크하는 논리
+   - Static, dynamic 모두 가능
+3. ServerList : 로드 밸런싱 대상 서버 목록
+   - Configuration을 통해 static하게 설정 가능
+   - Eureka 등을 기반으로 dynamic하게 설정 가능
+
+
+
+#### Service Registry - Eureka
+
+동적인 서비스 증설 및 축소를 위하여 필수적으로 필요한 서비스의 자가 등록, 탐색 및 부하 분산에 사용될 수 있는 라이브러리이다. 마이크로 서비스들의 정보를 레지스트리 서버에 등록할 수 있도록 기능을 제공한다.
+
+Ribbon과 결합하여 사용할 수 있으며 이를 통해 서버 목록을 자동으로 관리 및 갱신한다.
+
+
+
+Eureka는 Eureka 서버와 클라이언트로 구성된다.
+
++ Eureka 서버 : Eureka 클라이언트에 해당하는 마이크로 서비스들의 상태 정보가 등록되어 있는 레지스트리 서버이다.
++ Eureka 클라이언트 : 서비스가 시작될 때 Eureka 서버에 자신의 정보를 등록하고 이후 주기적으로 자신의 가용 상태를 알리며, 일정 횟수 이상의 ping이 확인되지 않으면 Eureka 서버에서 해당 서비스를 제외시킨다.
+
+
+
+EurekaServer 프로젝트 생성
+
+Eureka Client를 등록하는 경우 아래와 같이 Eureka Server에서 확인할 수 있다.
+
+![image-20220517170651045](C:\test\a\cs-study-for-interview\MSA\포도\Eureka_Server.png)
