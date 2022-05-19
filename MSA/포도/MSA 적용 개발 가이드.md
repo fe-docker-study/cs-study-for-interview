@@ -394,7 +394,7 @@ Eureka Client를 등록하는 경우 아래와 같이 Eureka Server에서 확인
 
 ![image-20220517170651045](https://github.com/fe-docker-study/cs-study-for-interview/blob/main/MSA/%ED%8F%AC%EB%8F%84/Eureka_Server.png)
 
-
+<br>
 
 #### API Gateway - Zuul
 
@@ -422,7 +422,7 @@ application.yml 설정
 - 서비스의 호스트 이름이 아닌 IP 주소를 Eureka Server 에 등록하도록 지정한다. (디폴트 false)
 - 기본적으로 유레카는 호스트 이름으로 접속하는 서비스를 등록한다. 따라서 DNS 가 지원된 호스트 이름을 할당하는 서버 기반 환경에서는 잘 동작하지만, 컨테이너 기반의 배포에서 컨테이너는 DNS 엔트리가 없는 임의의 생성된 호스트 이름을 부여받아 시작하므로 컨테이너 기반 배포에서는 해당 설정값을 false 로 하는 경우 호스트 이름 위치를 정상적으로 얻지 못한다.
 
-
+<br>
 
 #### Config 서버
 
@@ -436,7 +436,119 @@ Config 서버가 구동될 때 Environment Repository에서 설정 내용을 가
 
 만약 서비스 운영 중 설정 파일을 변경해야 하는 경우에는 Spring Cloud Bus를 이용하여 모든 마이크로 서비스의 환경 설정을 업데이트 할 수 있다. Spring Cloud Bus는 RabbitMQ, Kafka 같은 경량 메시지 브로커들을 사용할 수 있도록 해 주며, 이 메시지 브로커들을 이용하여 각 서비스들에세 Config 변경 사항을 전파한다.
 
+<br>
+
+#### Polyglot Support - Sidecar
+
+Java 이외의 언어로 작성된 애플리케이션(비 JVM 애플리케이션)을 Spring Cloud와 엮어 동작할 수 있도록 한다.
+
++ 비 JVM 애플리케이션의 경우 Sidecar가 가동 시 동작 여부를 체크한 후 Eureka 서버에 등록해준다.
++ Sidecar는 주기적으로 상태를 체크하여 Eureka 서버에 알려준다.
++ non-JVM microservice는 Sidecar의 존재를 알지 못한다.
++ Zuul을 통하여 Request를 받을 수 있으며, Ribbon을 통해 로드밸런스 기능이 작동하고, Config 서버로 환경설정을 할 수 있다.
+
+<br>
+
+비 JVM 애플리케이션을 구동하고 Sidecar 애플리케이션을 실행하면 Eureka 서버에 SIDECAR-NONJVM 애플리케이션이 등록된다.	
+
+<br>
+
+#### Centralized Logging - ELK(Elastic Search, Logstash, Kibana)
+
+각각의 마이크로서비스에서 생성된 로그들을 한 곳으로 취합하여 효율적으로 분석하기 위해 사용한다. 각 마이크로서비스에서 생성된 로그파일들을 Logstash에서 수집하여 Elasticsearch로 전송하고, Kibana 웹사이트에서 확인할 수 있다.
+
+<br>
+
+ELK Stack (Elasticsearch, Logstash, Kibana )
+
+1. Elasticsearch : 텍스트, 숫자, 정형 및 비정형, 로그 등의 모든 유형의 데이터를 저장할 수 있는 Lucene 검색 엔진 기반의 NoSQL 데이터베이스이다.
+2. Logstash : 로그 파이프라인 도구로 다양한 소스에서 동시에 데이터를 수집하여 Elasticsearch로 전송하고 색인되도록 한다.
+3. Kibana : Elasticsearch를 위한 시각화 및 관리 도구로서 애플리케이션 로그를 모니터링할 수 있다.
+
+<br>
+
+#### Centralized Metrics - Prometheus, Grafana
+
+Spring Boot Actuator는 Micrometer를 사용하여 애플리케이션의 Metric 정보를 제공한다. Micrometer를 통해 노출된 애플리케이션의 Metric 정보를 Prometheus를 사용하여 저장하고, Grafana를 활용하여 그래프로 시각화한다.
+
+<br>
+
+의존성 추가 (pom.xml)
+
+```xml
+<!-- 메트릭을 Endpoint로 노출 -->
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+
+<!-- Micrometer core dependency -->
+<dependency>
+	<groupId>io.micrometer</groupId>
+    <artifactId>micrometer-core</artifactId>
+</dependency>
+
+<!-- Micrometer Prometheus registry -->
+<dependency>
+	<groupId>io.micrometer</groupId>
+    <artifactId>micrometer-registry-prometheus</artifactId>
+</dependency>
+```
 
 
 
+application.properties 설정
 
+```properties
+management.endpoint.metrics.enabled=true
+management.endpoints.web.exposure.include=* # 활성화하고자 하는 endpoint들의 id 작성 가능 ex. prometheus,health,info,metric
+management.endpoint.prometheus.enabled=true
+management.metrics.export.prometheus.enabled=true
+management.server.port= # 설정하지 않으면 애플리케이션과 동일한 8080이 기본이 됨
+
+management.endpoints.web.base-path=/monitor
+management.endpoints.web.path-mapping.health=healthcheck # management.endpoints.web.base-path 와 management.endpoints.web.pathmapping.<id>값을 수정하여, 특정 id의 endpoint 경로를 수정 가능
+management.endpoints.web.cors.allowed-origins=http://other-domain.com
+management.endpoints.web.cors.allowed-methods=GET,POST
+```
+
+<br>
+
+#### Distributed Tracing - Sleuth, Zipkin
+
+분산 환경에서의 서비스 간 병목이 발생할 때 기존 방식의 모니터링으로는 추적이 불가능하기 때문에 분산 환경 로그 트레이싱이 필요하다.
+
+<br>
+
+의존성 추가 (pom.xml)
+
+```xml
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-sleuth</artifactId>
+</dependency>
+
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-zipkin</artifactId>
+</dependency>
+```
+
+
+
+application.yml 설정
+
+```yaml
+spring:
+  zipkin:
+    base-url: http://localhost:9411/
+```
+
+마이크로서비스들을 호출하면 로그에 Service Name, Trace Id, Span Id, Export Flag 를 확인할 수 있다. A 마이크로서비스에서 B 마이크로서비스를 호출하는 구조라 할 때 A 마이크로서비스를 호출하면 Trace Id와 Span Id는 동일하며, B 마이크로서비스 로그에서는 Trace Id는 동일하지만, Span Id는 마이크로서비스별로 다름을 확인할 수 있다.
+
+<br>
