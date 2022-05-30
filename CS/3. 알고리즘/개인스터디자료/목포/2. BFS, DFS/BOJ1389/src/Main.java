@@ -14,11 +14,13 @@ class Main {
         m = sc.nextInt();
         distance = new int[n + 1][n + 1];
 
-        //초기화
+        // 초기화
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <= n; j++) {
-                if (i == j) distance[i][j] = 0;
-                else distance[i][j] = INF;
+                if (i == j)
+                    distance[i][j] = 0;
+                else
+                    distance[i][j] = INF;
             }
         }
 
@@ -29,10 +31,10 @@ class Main {
             distance[end][start] = 1;
         }
 
-        //플로이드 워셜 알고리즘
+        // 플로이드 워셜 알고리즘
         floyd();
-        
-        //출력
+
+        // 출력
         int[] answer = new int[n + 1];
         int min = Integer.MAX_VALUE;
         for (int i = 1; i <= n; i++) {
@@ -54,10 +56,10 @@ class Main {
     }
 
     private static void floyd() {
-        for (int k = 1; k <= n; k++) { //거쳐가는 중간 지점 노드
-            for (int i = 1; i <= n; i++) { //시작 노드
-                for (int j = 1; j <= n; j++) { //도착 노드
-                    distance[i][j] = Math.min(distance[i][k] + distance[k][j], distance[i][j]); //최단경로 초기화
+        for (int k = 1; k <= n; k++) { // 거쳐가는 중간 지점 노드
+            for (int i = 1; i <= n; i++) { // 시작 노드
+                for (int j = 1; j <= n; j++) { // 도착 노드
+                    distance[i][j] = Math.min(distance[i][k] + distance[k][j], distance[i][j]); // 최단경로 초기화
                 }
             }
         }
