@@ -105,5 +105,4 @@ Nodes, Relationship, Key-Value 데이터 모델을 지원하며 RDF와 속성 �
 1. 소셜 미디어 분석  
 ![image](https://user-images.githubusercontent.com/31172248/153703654-9149d86c-4219-40ac-b3ee-f519937ca96f.png)
 ![image](https://user-images.githubusercontent.com/31172248/153703667-181a7735-2eb1-43df-8033-49870b49a264.png)
-2. 신용카드 사기 분석
-
+2. ![신용카드 사기 분석]("https://bitnine.net/ko/blog-graph-database/fraud-detection-system-by-using-graph-database/?ckattempt=1")
